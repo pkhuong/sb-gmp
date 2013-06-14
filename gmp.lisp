@@ -271,19 +271,15 @@ be (1+ COUNT)."
   (r (* (struct gmpint)))
   (a unsigned-long))
 
-#+:GMP5.1
 (define-alien-routine __gmpz_2fac_ui void
   (r (* (struct gmpint)))
   (a unsigned-long))
 
-#+:GMP5.1
 (define-alien-routine __gmpz_mfac_uiui void
   (r (* (struct gmpint)))
   (n unsigned-long)
   (m unsigned-long))
 
-
-#+:GMP5.1
 (define-alien-routine __gmpz_primorial_ui void
   (r (* (struct gmpint)))
   (n unsigned-long))
