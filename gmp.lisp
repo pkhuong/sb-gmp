@@ -407,7 +407,7 @@ be (1+ COUNT)."
 
 (defmacro defgmpfun (name args &body body)
   `(progn
-     (declaim (sb-ext:maybe-inline name))
+     (declaim (sb-ext:maybe-inline ,name))
      (defun ,name ,args
        (declare (optimize (speed 3) (space 3) (safety 0))
                 (type integer ,@args))
@@ -686,7 +686,7 @@ be (1+ COUNT)."
 
 (defmacro defmpqfun (name gmpfun)
   `(progn
-     (declaim (sb-ext:maybe-inline name))
+     (declaim (sb-ext:maybe-inline ,name))
      (defun ,name (a b)
        (declare (optimize (speed 3) (space 3) (safety 0)))
        (let ((size (+ (max (blength (numerator a))
@@ -758,7 +758,7 @@ be (1+ COUNT)."
              (let ((special (intern (format nil "*~A-FUNCTION*" name))))
                `(progn
                   (declaim (type function ,special)
-                           (inline name))
+                           (inline ,name))
                   (defvar ,special (symbol-function ',original))
                   (defun ,name (&rest args)
                     (apply (load-time-value ,special t) args))))))
